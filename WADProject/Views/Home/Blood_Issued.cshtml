@@ -1,0 +1,144 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Blood Bank Managment System</title>
+    <link rel="stylesheet" href="~/css/style.css">
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/images/BB_favicon.png">
+    <!--         -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+</head>
+
+<body>
+    <header>
+        <!--inline -->
+        <img src="~/assets/images/logo.png" alt="Logo" style="height: 60%; width: 2.8%;padding : 9px 0px 0px 5px; margin-bottom: -2px">
+        <h2>
+            Blood Bank Managment
+        </h2>
+        <img src="~/assets/images/person-circle-sharp.svg"
+            style="padding : 8px 0.5px 0px 61%;margin-bottom: -5px;">
+        <p id="sample-user">Sample User</p>
+
+    </header>
+      <div class="full-page" id="blur">
+        <div class="center">
+<div class="navbar">
+                <nav>
+                    <a class="navitem" href="~/Home/Donor">Donor</a>
+
+                    <a class="navitem" href="~/Home/Recipient">Recipient</a>
+
+                    <a class="navitem" href="~/Home/Blood_collection">Blood Collection</a>
+
+                    <a class="navitem" href="~/Home/Blood_request">Blood Request</a>
+
+                    <a class="navitem bb" href="~/Home/Blood_issued">Blood Issued</a>
+
+                    <a class="navitem" href="~/Home/User_accounts">User Accounts</a>
+
+                    <a class="navitem" href="~/Home/User_logs">User Logs</a>
+                </nav>
+            </div>
+            <hr id="hr1" size="1" width="100%" />
+            <br><br>
+
+<div class="tableheader">
+                <p id="table-p">Blood Issued Table</p>
+            </div>
+            <hr id="hr2" size="1" width="100%" />
+            <div class="tblbox">
+                <br> <div style="height:12px "></div>
+                <div id="utility">
+                    <button class="grnbtn" onclick="openForm()"><b>+</b> Add</button>
+                    <input type="text" placeholder=" Search" style="float:right; height: 30px;">
+                </div>
+                <table>
+                    <tr>
+                        <th>Blood Request Control no</th>
+                        <th>Issued By</th>
+                        <th>Issued Date</th>
+                        <th>Issued To</th>
+                        <th>Amount Paid</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td>AbcddcbA</td>
+                        <td>AbcddcbA</td>
+                        <td>AbcddcbA</td>
+                        <td>AbcddcbA</td>
+                        <td>AbcddcbA</td>
+                        <td id="tdbtn">
+                            <button type="button" class="grnbtn">Edit</button>
+                            <button type="button" class="redbtn">Close</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>AbcddcbA</td>
+                        <td>AbcddcbA</td>
+                        <td>AbcddcbA</td>
+                        <td>AbcddcbA</td>
+                        <td>AbcddcbA</td>
+                        <td id="tdbtn">
+                            <button type="button" class="grnbtn">Edit</button>
+                            <button type="button" class="redbtn">Close</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>AbcddcbA</td>
+                        <td>AbcddcbA</td>
+                        <td>AbcddcbA</td>
+                        <td>AbcddcbA</td>
+                        <td>AbcddcbA</td>
+                        <td id="tdbtn">
+                            <button type="button" class="grnbtn">Edit</button>
+                            <button type="button" class="redbtn">Close</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+   </div>
+ </div>
+     <div id="popupScreen">
+         <img src="~/assets/images/close-circle-sharp.svg" onclick="openForm()" style="position:absolute;cursor:pointer;top:-4px;right:-3px" >
+        <h1 style="margin-left:34%">Add Blood Isuued</h1> <br>
+        <form method="post" onsubmit="return validateForm()">
+            <div class = "row">
+                <label for="C_no" style="margin-right:15px">Blood Request Control No.</label><br>
+            </div>
+            <div class = "row">
+                <input style="width:100%" type="number" id="C_no" placeholder=" No." required> <br>
+            </div> <br /> 
+            <div class ="row">
+                <label for="issuedby">Issued By  </label> <br />
+                <label for="Issuedto" style="margin-left:-40px">  Issued To</label> <br>
+            </div>
+            <div class ="row">
+                <input type="text" id="issuedby" placeholder="Enter Issued By" required>
+                <input type="text" id="Issuedto" placeholder="Enter Issued To" required style="margin-left:12%"> <br>
+            </div> <br />
+            <div class ="row">
+                <label for="date" >Date Issued:</label> <br>
+                <label for="amount" style="margin-left:-22px">Amount Paid</label><br>
+            </div>
+            <div class ="row">
+                 <input type="date" id="date" required > <br>     
+                 <input type="text" id="amount" placeholder="Enter Amount" required style="margin-left:10%">  
+            </div> <br /> 
+            <!---------------------------------------->
+            <button style="margin-left:43%" class="sbmtbtn" onsubmit="openForm()">Submit</button>
+        </form>
+    </div>
+
+    
+    <script src="~/js/scripts.js"></script>
+</body>
+
+</html>
