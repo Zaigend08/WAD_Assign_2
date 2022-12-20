@@ -1,9 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-    
-}
+﻿@model IEnumerable<WADProject.Models.BloodIssuedModel>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,39 +64,38 @@
                         <th>Amount Paid</th>
                         <th>Action</th>
                     </tr>
-                    <tr>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td id="tdbtn">
-                            <button type="button" class="grnbtn">Edit</button>
-                            <button type="button" class="redbtn">Close</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td id="tdbtn">
-                            <button type="button" class="grnbtn">Edit</button>
-                            <button type="button" class="redbtn">Close</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td id="tdbtn">
-                            <button type="button" class="grnbtn">Edit</button>
-                            <button type="button" class="redbtn">Close</button>
-                        </td>
-                    </tr>
+                    @if(Model != null)
+                     {
+                         @foreach (var item in Model) 
+                        {   
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.controlNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.issuedBY)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.dateOfIssuance)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.issuedTo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.amountPaid)
+                                </td>
+                                <td id="tdbtn">
+                                    <button type="button" class="grnbtn">Edit</button>
+                                    <button type="button" class="redbtn">Close</button>
+                                </td>
+                            </tr>
+                         }
+                     }
+                     else{
+                         <tr> 
+                             <td> Their is no data in this table</td>
+                         </tr>
+                     }
                 </table>
             </div>
    </div>
@@ -111,26 +105,26 @@
         <h1 style="margin-left:34%">Add Blood Isuued</h1> <br>
         <form method="post" onsubmit="return validateForm()">
             <div class = "row">
-                <label for="C_no" style="margin-right:15px">Blood Request Control No.</label><br>
+                <label for="controlNo" style="margin-right:15px">Blood Request Control No.</label><br>
             </div>
             <div class = "row">
-                <input style="width:100%" type="number" id="C_no" placeholder=" No." required> <br>
+                <input style="width:100%" type="number" asp-for="controlNo" placeholder=" No." > <br>
             </div> <br /> 
             <div class ="row">
-                <label for="issuedby">Issued By  </label> <br />
-                <label for="Issuedto" style="margin-left:-40px">  Issued To</label> <br>
+                <label for="issuedBy">Issued By  </label> <br />
+                <label for="IssuedTo" style="margin-left:-40px">  Issued To</label> <br>
             </div>
             <div class ="row">
-                <input type="text" id="issuedby" placeholder="Enter Issued By" required>
-                <input type="text" id="Issuedto" placeholder="Enter Issued To" required style="margin-left:12%"> <br>
+                <input type="text" asp-for="issuedBy" placeholder="Enter Issued By" >
+                <input type="text" asp-for="IssuedTo" placeholder="Enter Issued To" style="margin-left:12%"> <br>
             </div> <br />
             <div class ="row">
-                <label for="date" >Date Issued:</label> <br>
-                <label for="amount" style="margin-left:-22px">Amount Paid</label><br>
+                <label for="dateOfIssuance" >Date Issued:</label> <br>
+                <label for="amountPaid" style="margin-left:-22px">Amount Paid</label><br>
             </div>
             <div class ="row">
-                 <input type="date" id="date" required > <br>     
-                 <input type="text" id="amount" placeholder="Enter Amount" required style="margin-left:10%">  
+                 <input type="date" asp-for="dateOfIssuance"  > <br>     
+                 <input type="text" asp-for="amountPaid" placeholder="Enter Amount" style="margin-left:10%">  
             </div> <br /> 
             <!---------------------------------------->
             <button style="margin-left:43%" class="sbmtbtn" onsubmit="openForm()">Submit</button>

@@ -1,8 +1,6 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿
+@model IEnumerable<WADProject.Models.userAccountsModel>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,39 +62,34 @@
                         <th>Account Name</th>
                         <th>Username</th>
                         <th>Password</th>
-                        <th>Account Status</th>
                         <th>Action</th>
                     </tr>
-                    <tr>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>********</td>
-                        <td>AbcddcbA</td>
-                        <td id="tdbtn">
-                            <button type="button" class="grnbtn" style="margin-left:40px">Edit</button>
-                            <button type="button" class="redbtn">Close</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>********</td>
-                        <td>AbcddcbA</td>
-                        <td id="tdbtn">
-                            <button type="button" class="grnbtn" style="margin-left:40px">Edit</button>
-                            <button type="button" class="redbtn">Close</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>********</td>
-                        <td>AbcddcbA</td>
-                        <td id="tdbtn">
-                            <button type="button" class="grnbtn" style="margin-left:40px">Edit</button>
-                            <button type="button" class="redbtn">Close</button>
-                        </td>
-                    </tr>
+                    @if(Model != null)
+                     {
+                         @foreach (var item in Model) 
+                        {   
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AccName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.userName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Password)
+                                </td>
+                                <td id="tdbtn">
+                                    <button type="button" class="grnbtn">Edit</button>
+                                    <button type="button" class="redbtn">Close</button>
+                                </td>
+                            </tr>
+                         }
+                     }
+                     else{
+                         <tr> 
+                             <td> Their is no data in this table</td>
+                         </tr>
+                     }
                 </table>
             </div>
    </div>
@@ -106,18 +99,18 @@
         <h1 style="margin-left:34%">Add User</h1> <br>
         <form method="post" onsubmit="return validateForm()">
              <div class = "row">
-                <label for="accName" style="margin-right:15px">Account Name</label><br>
+                <label for="AccName" style="margin-right:15px">Account Name</label><br>
             </div>
             <div class = "row">
-                <input style="width:100%" type="text" id="accName" placeholder=" Enter Account Name" required> <br>
+                <input style="width:100%" type="text" asp-for="AccName" placeholder=" Enter Account Name" > <br>
             </div> <br /> 
             <div class ="row">
-                <label for="name">User Name  </label> <br />
-                <label for="password" style="margin-left:-40px">Password</label> <br>
+                <label for="userName">User Name  </label> <br />
+                <label for="Password" style="margin-left:-40px">Password</label> <br>
             </div>
             <div class ="row">
-                <input type="text" id="name" placeholder=" Enter Username" required>
-                <input type="password" id="password" placeholder=" Enter Password" required style="margin-left:12%"> <br>
+                <input type="text" asp-for="userName" placeholder=" Enter Username" >
+                <input type="password" asp-for="Password" placeholder=" Enter Password" style="margin-left:12%"> <br>
             </div> <br /> <br />
             <!---------------------------------------->
             <button style="margin-left:43%" class="sbmtbtn" onsubmit="openForm()">Submit</button>

@@ -105,10 +105,17 @@ table {
     border-collapse: collapse;
 }
 
+th, td {
+    text-align: center;
+    border: 1px ridge rgb(199, 196, 196);
+    border-collapse: collapse;
+    padding: 8px;
+}
+
 .tableheader {
     width: 100%;
     padding-top: 12px;
-    height: 40px;
+    height: 35px;
     background-color: rgb(219, 206, 206);
     font-weight: bold;
 }
@@ -142,6 +149,7 @@ table {
     color: white;
     cursor: pointer;
 }
+
 .sbmtbtn {
     background-color: darkcyan;
     font-weight: bold;
@@ -153,29 +161,8 @@ table {
     color: white;
     cursor: pointer;
 }
-th {
-    border: 1px ridge rgb(199, 196, 196);
-    border-collapse: collapse;
-    padding-top: 8px;
-    padding-bottom: 8px;
-}
 
-td {
-    border: 1px ridge rgb(199, 196, 196);
-    border-collapse: collapse;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    padding-left: 20px;
-}
 
-#tdbtn{
-    justify-content: center;   
-}
-
-tr {
-    justify-content: center;
-    display:flex;
-}
 #popupScreen{
     position: fixed;
     width: 40%;

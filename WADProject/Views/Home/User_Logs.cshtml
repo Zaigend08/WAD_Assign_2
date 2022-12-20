@@ -4,6 +4,7 @@
 @{
     
 }
+@model IEnumerable<WADProject.Models.logsModel>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,24 +68,31 @@
                         <th>Login Time</th>
                         <th>Logout Time</th>
                     </tr>
-                    <tr>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                    </tr>
-                    <tr>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                    </tr>
-                    <tr>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                    </tr>
+                    @if(Model != null)
+                     {
+                         @foreach (var item in Model) 
+                        {   
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AccName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AccName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.loginTime)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.logoutTime)
+                                </td>
+                            </tr>
+                         }
+                     }
+                     else{
+                         <tr> 
+                             <td> Their is no data in this table</td>
+                         </tr>
+                     }
                 </table>
             </div>
    </div>

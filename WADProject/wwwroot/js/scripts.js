@@ -15,3 +15,4 @@ function openForm(){
     var popup = document.getElementById('popupScreen')
     popup.classList.toggle('active')
 }
+

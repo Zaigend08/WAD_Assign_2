@@ -1,4 +1,5 @@
-﻿  
+﻿@model IEnumerable<WADProject.Models.BloodRequestModel>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,48 +68,47 @@
                         <th>Remarks</th>
                         <th>Action</th>
                     </tr>
-                    <tr>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td id="tdbtn">
-                            <button type="button" class="grnbtn">Edit</button>
-                            <button type="button" class="redbtn">Close</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td id="tdbtn">
-                            <button type="button" class="grnbtn">Edit</button>
-                            <button type="button" class="redbtn">Close</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td>AbcddcbA</td>
-                        <td id="tdbtn">
-                            <button type="button" class="grnbtn">Edit</button>
-                            <button type="button" class="redbtn">Close</button>
-                        </td>
-                    </tr>
+                    @if(Model != null)
+                     {
+                         @foreach (var item in Model) 
+                        {   
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.controlNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.requestedBy)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Recipient)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BloodType)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.noOfBags)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Amount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Purpose)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Remarks)
+                                </td>
+                                <td id="tdbtn">
+                                    <button type="button" class="grnbtn">Edit</button>
+                                    <button type="button" class="redbtn">Close</button>
+                                </td>
+                            </tr>
+                         }
+                     }
+                     else{
+                         <tr> 
+                             <td> Their is no data in this table</td>
+                         </tr>
+                     }
                 </table>
             </div>
    </div>
@@ -118,14 +118,14 @@
         <h1 style="margin-left:34%">Add Request</h1> <br>
         <form method="post" onsubmit="return validateForm()">
             <div class ="row">
-                <label for="C_no">Control No</label> <br />
-                <label for="RequestedBy" style="margin-left:-18px">Requested By</label> <br>
-                <label for="bloodtype">Blood Type</label> <br />
+                <label for="controlNo">Control No</label> <br />
+                <label for="requestedBy" style="margin-left:-18px">Requested By</label> <br>
+                <label for="rBloodtype">Blood Type</label> <br />
             </div>
             <div class ="row">
-                <input type="number" id="C_no" placeholder="  -  -  -  -" required style="width:75px">
-                <input type="text" id="RequestedBy" placeholder=" Name Here!" required style="margin-left:5%;width:100px"> <br>
-                <select name="dropdown" id="bloodtype" style="margin-right:7%;width:80px">
+                <input type="number" asp-for="controlNo" placeholder="  -  -  -  -"  style="width:75px">
+                <input type="text" asp-for="requestedBy" placeholder=" Name Here!"  style="margin-left:5%;width:100px"> <br>
+                <select name="dropdown" asp-for="rBloodtype" style="margin-right:7%;width:80px">
                     <option value="O" selected>O </option>
                     <option value="A">A</option>
                     <option value="B">B</option>
@@ -133,25 +133,25 @@
                 </select>
             </div> <br />
             <div class ="row">
-                <label for="recipient">Recipient</label> <br />
-                <label for="bags" style="margin-left:55px">No Of Bags</label><br>
+                <label for="Recipient">Recipient</label> <br />
+                <label for="noOfBags" style="margin-left:55px">No Of Bags</label><br>
             </div>
             <div class ="row">
-                 <select name="dropdown" id="recipient" style="width:45%">
+                 <select name="dropdown" asp-for="Recipient" style="width:45%">
                     <option value="d1" selected>Data 1 </option>
                     <option value="d2">Data 2</option>
                 </select> 
-                 <input style="width:80px" type="number" id="bags" placeholder="No." required> <br>     
+                 <input style="width:80px" type="number" asp-for="noOfBags" placeholder="No." > <br>     
             </div> <br />
             <div class = "row">
-                <label for="amount" style="margin-right:15px">Amount</label><br>
-                <label for="purpose">Purpose</label> <br>
-                <label for="remarks">Remarks</label><br>
+                <label for="Amount" style="margin-right:15px">Amount</label><br>
+                <label for="Purpose">Purpose</label> <br>
+                <label for="rRemarks">Remarks</label><br>
             </div>
             <div class = "row">
-                <input style="width:68px" type="number" id="amount" required placeholder=" Amt"> <br>              
-                <input style="width:38%" type="text" id="purpose" required placeholder=" Purpose of Requesting"> <br> 
-                <input style="width:66px;margin-right:20px" type="text" id="remarks" required placeholder=" Remarks"> <br>
+                <input style="width:68px" type="number" asp-for="Amount" placeholder=" Amt"> <br>              
+                <input style="width:38%" type="text" asp-for="Purpose"  placeholder=" Purpose of Requesting"> <br> 
+                <input style="width:66px;margin-right:20px" type="text" asp-for="rRemarks" placeholder=" Remarks"> <br>
             </div> <br /> 
             <!---------------------------------------->
             <button style="margin-left:43%" class="sbmtbtn" onsubmit="openForm()">Submit</button>
