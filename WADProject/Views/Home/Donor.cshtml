@@ -71,8 +71,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                     @if(Model is not null)
-                     {
+                     @*@if(Model is not null)
+                     {*@
                          @foreach (var item in Model) 
                         {   
                             <tr>
@@ -106,12 +106,13 @@
                                 </td>
                             </tr>
                          }
+                     @*    
                      }
                      else{
                          <tr> 
                              <td> Their is no data in this table</td>
                          </tr>
-                     }
+                     }*@
                     </tbody>
                     
                 </table>
@@ -126,41 +127,40 @@
             @using (@Html.BeginForm(method:FormMethod.Post))
             {
                 <div class ="row">
-                    <label asp-for="Donor">Fullname</label> <br />
-                    <label asp-for="dAddress" style="margin-left:-18px">Address</label> <br>
-                    <span asp-validation-for="Donor" class="text-danger"></span>
+                    <label for="Donor">Fullname</label> <br />
+                    <label for="dAddress" style="margin-left:-18px">Address</label> <br>
                 </div>
                 <div class ="row">
-                    <input type="text" asp-for="Donor" placeholder="Enter Donor Fullname" >
-                    <input type="text" asp-for="dAddress" placeholder="Enter Donor Address" style="margin-left:18%"> <br>
+                    <input type="text" name="Donor" placeholder="Enter Donor Fullname" required>
+                    <input type="text" name="dAddress" placeholder="Enter Donor Address" style="margin-left:18%" required> <br>
                 </div> <br />
                 <div class ="row">
-                    <label asp-for="dContact">Contact:</label><br>
-                    <label asp-for="dEmail" style="margin-left:-28px">Email:</label> <br>
+                    <label for="dContact">Contact:</label><br>
+                    <label for="dEmail" style="margin-left:-28px">Email:</label> <br>
                 </div>
                 <div class ="row">
-                        <input type="text" asp-for="dContact" placeholder="Enter Donor Contact" > 
-                        <input type="email" asp-for="dEmail" placeholder="Enter Donor Email" style="margin-left:18%">
+                    <input type="number" name="dContact" placeholder="Enter Donor Contact" required> 
+                    <input type="email" name="dEmail" placeholder="Enter Donor Email" style="margin-left:18%"required >
                 </div> <br />
                 <div class = "row">
-                    <label asp-for="dAge" style="margin-right:15px">Age</label><br>
-                    <label asp-for="dGender">Gender</label> <br>
-                    <label asp-for="dBloodtype">Blood Type</label><br>
-                    <label asp-for="dRemarks">Remarks</label><br>
+                    <label for="dAge" style="margin-right:15px">Age</label><br>
+                    <label for="dGender">Gender</label> <br>
+                    <label for="dBloodtype">Blood Type</label><br>
+                    <label for="dRemarks">Remarks</label><br>
                 </div>
                 <div class = "row">
-                    <input style="width:62px" type="number" asp-for="dAge" placeholder="Age" > <br>
-                    <select name="dropdown" asp-for="dGender" style="margin-left:-24%">
+                    <input style="width:62px" type="number" name="dAge" placeholder="Age" required> <br>
+                    <select name="dGender" style="margin-left:-24%" required>
                         <option value="Male" selected>Male </option>
                         <option value="Female">Female</option>
                     </select> 
-                    <select name="dropdown" asp-for="dBloodtype" style="margin-left:-5%;width:70px">
+                    <select name="dBloodtype" style="margin-left:-5%;width:70px" required>
                         <option value="O" selected>O </option>
                         <option value="A">A</option>
                         <option value="B">B</option>
                         <option value="AB">AB</option>
                     </select> 
-                    <input style="width:62px;margin-right:-40px" type="text" asp-for="dRemarks" placeholder="Remarks"> <br>
+                    <input style="width:62px;margin-right:-40px" type="text" name="dRemarks" placeholder="Remarks" required> <br>
                 </div> <br /> 
                 <!---------------------------------------->
                 <input type="submit" value="Submit" style="margin-left:43%" class="sbmtbtn" />

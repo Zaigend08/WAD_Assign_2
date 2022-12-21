@@ -19,19 +19,16 @@ namespace WADProject.Controllers
                 return View(listofdata);
             }
             catch { };
-                return View(null);
+                return View();
 
         }
         [HttpPost]
         public IActionResult Donor(DonorModel model)
         {
-            try
-            {
-                _Db.DonorData.Add(model);
-                _Db.SaveChanges();
-            }
-            catch { };
-            return View();
+            Console.WriteLine(model);
+            _Db.DonorData.Add(model);
+            _Db.SaveChanges();
+            return RedirectToAction("Donor",new {HTTPVerb = "GET"});
         }
         /*public IActionResult Recipient()
         {

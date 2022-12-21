@@ -70,8 +70,8 @@
                         <th>Date Collection</th>
                         <th>Action</th>
                     </tr>
-                    @if(Model != null)
-                     {
+                    @*@if(Model != null)
+                     {*@
                          @foreach (var item in Model) 
                         {   
                             <tr>
@@ -96,12 +96,12 @@
                                 </td>
                             </tr>
                          }
-                     }
+                     @*}
                      else{
                          <tr> 
                              <td> Their is no data in this table</td>
                          </tr>
-                     }
+                     }*@
                 </table>
             </div>
    </div>
@@ -115,11 +115,11 @@
                 <label for="Hospital" style="margin-left:-90px">Hospital</label> <br>
             </div>
             <div class ="row">
-                <select name="dropdown" asp-for="Donor" style="width:35%">
+                <select name="Donor" style="width:35%" required>
                     <option value="d1" selected>Data 1 </option>
                     <option value="d2">Data 2</option>
                 </select> 
-                <input type="text" asp-for="Hospital" placeholder="Enter Hospital" style="margin-right:-20%;width:50%"> <br>
+                <input type="text" name="Hospital" placeholder="Enter Hospital" style="margin-right:-20%;width:50%" required> <br>
             </div> <br />
             <div class = "row">
                 <label for="noOfBags" style="margin-right:15px">No Of Bags</label><br>
@@ -127,17 +127,17 @@
                 <label for="dBloodtype">Blood Type</label><br>
             </div>
             <div class = "row">
-                <input style="width:62px" type="number" asp-for="noOfBags" placeholder="No." > <br>
-                <input style="width:110px;margin-left:30px" asp-for="dateOfCollection" > <br>
-                <select name="dropdown" asp-for="dBloodtype" style="margin-right:7%;width:70px">
-                    <option value="O" selected>O </option>
+                <input style="width:62px" type="number" name="noOfBags" placeholder="No." required> <br>
+                <input style="width:110px;margin-left:30px" name="dateOfCollection" required> <br>
+                <select name="dBloodtype" style="margin-right:7%;width:70px" required>
+                    <option value="O" >O </option>
                     <option value="A">A</option>
-                    <option value="B">B</option>
+                    <option value="B" selected>B</option>
                     <option value="AB">AB</option>
                 </select> 
             </div> <br /> <br />
             <!---------------------------------------->
-            <button style="margin-left:43%" class="sbmtbtn" onsubmit="openForm()">Submit</button>
+            <button style="margin-left:43%" class="sbmtbtn" type="submit" onsubmit="openForm()">Submit</button>
         </form>
     </div>
 

@@ -12,7 +12,7 @@ using WADProject.Models;
 namespace WADProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221215005205_init")]
+    [Migration("20221221080753_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -146,11 +146,11 @@ namespace WADProject.Migrations
 
                     b.Property<string>("Donor")
                         .IsRequired()
-                        .HasColumnType("varchar(15)");
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("dAddress")
                         .IsRequired()
-                        .HasColumnType("varchar(20)");
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<int?>("dAge")
                         .IsRequired()
@@ -158,7 +158,7 @@ namespace WADProject.Migrations
 
                     b.Property<string>("dBloodType")
                         .IsRequired()
-                        .HasColumnType("varchar(5)");
+                        .HasColumnType("nvarchar(5)");
 
                     b.Property<int?>("dContact")
                         .IsRequired()
@@ -166,15 +166,15 @@ namespace WADProject.Migrations
 
                     b.Property<string>("dEmail")
                         .IsRequired()
-                        .HasColumnType("varchar(25)");
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("dGender")
                         .IsRequired()
-                        .HasColumnType("varchar(8)");
+                        .HasColumnType("nvarchar(8)");
 
                     b.Property<string>("dRemarks")
                         .IsRequired()
-                        .HasColumnType("varchar(10)");
+                        .HasColumnType("nvarchar(10)");
 
                     b.HasKey("DonorId");
 

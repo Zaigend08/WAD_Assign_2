@@ -71,8 +71,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                     @if(Model != null)
-                     {
+                     @*@if(Model != null)
+                     {*@
                          @foreach (var item in Model) 
                         {   
                             <tr>
@@ -106,12 +106,12 @@
                                 </td>
                             </tr>
                          }
-                     }
+                    @* }
                      else{
                          <tr> 
                              <td> Their is no data in this table</td>
                          </tr>
-                     }
+                     }*@
                     </tbody>
                     
                 </table>
@@ -127,16 +127,16 @@
                 <label for="rAddress" style="margin-left:-18px">Address</label> <br>
             </div>
             <div class ="row">
-                <input type="text" asp-for="Recipient" placeholder="Enter Recipient Fullname" >
-                <input type="text" asp-for="rAddress" placeholder="Enter Recipient Address" style="margin-left:18%"> <br>
+                <input type="text" name="Recipient" placeholder="Enter Recipient Fullname" required>
+                <input type="text" name="rAddress" placeholder="Enter Recipient Address" style="margin-left:18%" required> <br>
             </div> <br />
             <div class ="row">
                 <label for="rContact">Contact:</label><br>
                 <label for="rEmail" style="margin-left:-28px">Email:</label> <br>
             </div>
             <div class ="row">
-                 <input type="text" asp-for="rContact" placeholder="Enter Recipient Contact" > 
-                 <input type="text" asp-for="rEmail" placeholder="Enter Recipient Email" style="margin-left:18%">  
+                 <input type="number" name="rContact" placeholder="Enter Recipient Contact" required> 
+                 <input type="email" name="rEmail" placeholder="Enter Recipient Email" style="margin-left:18%" required>  
             </div> <br />
             <div class = "row">
                 <label for="rAge" style="margin-right:15px">Age</label><br>
@@ -145,18 +145,18 @@
                 <label for="rRemarks">Remarks</label><br>
             </div>
             <div class = "row">
-                <input style="width:62px" type="number" asp-for="rAge" placeholder="Age" > <br>
-                <select name="dropdown" asp-for="rGender" style="margin-left:-24%">
+                <input style="width:62px" type="number" name="rAge" placeholder="Age" required> <br>
+                <select name="rGender" style="margin-left:-24%" required>
                     <option value="Male" selected>Male </option>
                     <option value="Female">Female</option>
                 </select> 
-                <select name="dropdown" asp-for="rBloodtype" style="margin-left:-5%;width:70px">
-                    <option value="O" selected>O </option>
+                <select name="rBloodtype" style="margin-left:-5%;width:70px"required>
+                    <option value="O">O </option>
                     <option value="A">A</option>
-                    <option value="B">B</option>
+                    <option value="B" selected>B</option>
                     <option value="AB">AB</option>
                 </select> 
-                <input style="width:62px;margin-right:-40px" type="text" asp-for="rRemarks" placeholder="Remarks" > <br>
+                <input style="width:62px;margin-right:-40px" type="text" name="rRemarks" placeholder="Remarks" required > <br>
             </div> <br /> 
             <!---------------------------------------->
             <button style="margin-left:43%" class="sbmtbtn" onsubmit="openForm()">Submit</button>

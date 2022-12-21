@@ -64,8 +64,8 @@
                         <th>Password</th>
                         <th>Action</th>
                     </tr>
-                    @if(Model != null)
-                     {
+                    @*@if(Model != null)
+                     {*@
                          @foreach (var item in Model) 
                         {   
                             <tr>
@@ -84,12 +84,12 @@
                                 </td>
                             </tr>
                          }
-                     }
+                     @*}
                      else{
                          <tr> 
                              <td> Their is no data in this table</td>
                          </tr>
-                     }
+                     }*@
                 </table>
             </div>
    </div>
@@ -102,18 +102,18 @@
                 <label for="AccName" style="margin-right:15px">Account Name</label><br>
             </div>
             <div class = "row">
-                <input style="width:100%" type="text" asp-for="AccName" placeholder=" Enter Account Name" > <br>
+                <input style="width:100%" type="text" name="AccName" placeholder=" Enter Account Name" required> <br>
             </div> <br /> 
             <div class ="row">
                 <label for="userName">User Name  </label> <br />
                 <label for="Password" style="margin-left:-40px">Password</label> <br>
             </div>
             <div class ="row">
-                <input type="text" asp-for="userName" placeholder=" Enter Username" >
-                <input type="password" asp-for="Password" placeholder=" Enter Password" style="margin-left:12%"> <br>
+                <input type="text" name="userName" placeholder=" Enter Username" required>
+                <input type="password" name="Password" placeholder=" Enter Password" style="margin-left:12%" required> <br>
             </div> <br /> <br />
             <!---------------------------------------->
-            <button style="margin-left:43%" class="sbmtbtn" onsubmit="openForm()">Submit</button>
+            <button style="margin-left:43%" type="submit" class="sbmtbtn" onsubmit="openForm()">Submit</button>
         </form>
     </div>
 

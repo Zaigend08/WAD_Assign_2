@@ -68,8 +68,8 @@
                         <th>Remarks</th>
                         <th>Action</th>
                     </tr>
-                    @if(Model != null)
-                     {
+                    @*@if(Model != null)
+                     {*@
                          @foreach (var item in Model) 
                         {   
                             <tr>
@@ -103,12 +103,12 @@
                                 </td>
                             </tr>
                          }
-                     }
+                     @*}
                      else{
                          <tr> 
                              <td> Their is no data in this table</td>
                          </tr>
-                     }
+                     }*@
                 </table>
             </div>
    </div>
@@ -123,9 +123,9 @@
                 <label for="rBloodtype">Blood Type</label> <br />
             </div>
             <div class ="row">
-                <input type="number" asp-for="controlNo" placeholder="  -  -  -  -"  style="width:75px">
-                <input type="text" asp-for="requestedBy" placeholder=" Name Here!"  style="margin-left:5%;width:100px"> <br>
-                <select name="dropdown" asp-for="rBloodtype" style="margin-right:7%;width:80px">
+                <input type="number" name="controlNo" placeholder="  -  -  -  -"  style="width:75px">
+                <input type="text" name="requestedBy" placeholder=" Name Here!"  style="margin-left:5%;width:100px"> <br>
+                <select name="rBloodtype" style="margin-right:7%;width:80px">
                     <option value="O" selected>O </option>
                     <option value="A">A</option>
                     <option value="B">B</option>
@@ -137,11 +137,11 @@
                 <label for="noOfBags" style="margin-left:55px">No Of Bags</label><br>
             </div>
             <div class ="row">
-                 <select name="dropdown" asp-for="Recipient" style="width:45%">
+                 <select name="Recipient" style="width:45%">
                     <option value="d1" selected>Data 1 </option>
                     <option value="d2">Data 2</option>
                 </select> 
-                 <input style="width:80px" type="number" asp-for="noOfBags" placeholder="No." > <br>     
+                 <input style="width:80px" type="number" name="noOfBags" placeholder="No." required> <br>     
             </div> <br />
             <div class = "row">
                 <label for="Amount" style="margin-right:15px">Amount</label><br>
@@ -149,12 +149,12 @@
                 <label for="rRemarks">Remarks</label><br>
             </div>
             <div class = "row">
-                <input style="width:68px" type="number" asp-for="Amount" placeholder=" Amt"> <br>              
-                <input style="width:38%" type="text" asp-for="Purpose"  placeholder=" Purpose of Requesting"> <br> 
-                <input style="width:66px;margin-right:20px" type="text" asp-for="rRemarks" placeholder=" Remarks"> <br>
+                <input style="width:68px" type="number" name="Amount" placeholder=" Amt" required> <br>              
+                <input style="width:38%" type="text" name="Purpose"  placeholder=" Purpose of Requesting" required> <br> 
+                <input style="width:66px;margin-right:20px" type="text" name="rRemarks" placeholder=" Remarks" required> <br>
             </div> <br /> 
             <!---------------------------------------->
-            <button style="margin-left:43%" class="sbmtbtn" onsubmit="openForm()">Submit</button>
+            <button style="margin-left:43%" type="submit" class="sbmtbtn" onsubmit="openForm()">Submit</button>
         </form>
     </div>
 

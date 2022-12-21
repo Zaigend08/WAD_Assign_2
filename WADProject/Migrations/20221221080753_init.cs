@@ -30,14 +30,14 @@ namespace WADProject.Migrations
                 {
                     DonorId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Donor = table.Column<string>(type: "varchar(15)", nullable: false),
-                    dAddress = table.Column<string>(type: "varchar(20)", nullable: false),
+                    Donor = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    dAddress = table.Column<string>(type: "nvarchar(20)", nullable: false),
                     dContact = table.Column<int>(type: "int", nullable: false),
-                    dEmail = table.Column<string>(type: "varchar(25)", nullable: false),
+                    dEmail = table.Column<string>(type: "nvarchar(25)", nullable: false),
                     dAge = table.Column<int>(type: "int", nullable: false),
-                    dGender = table.Column<string>(type: "varchar(8)", nullable: false),
-                    dBloodType = table.Column<string>(type: "varchar(5)", nullable: false),
-                    dRemarks = table.Column<string>(type: "varchar(10)", nullable: false)
+                    dGender = table.Column<string>(type: "nvarchar(8)", nullable: false),
+                    dBloodType = table.Column<string>(type: "nvarchar(5)", nullable: false),
+                    dRemarks = table.Column<string>(type: "nvarchar(10)", nullable: false)
                 },
                 constraints: table =>
                 {
