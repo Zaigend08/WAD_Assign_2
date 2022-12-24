@@ -12,7 +12,7 @@ using WADProject.Models;
 namespace WADProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221221080753_init")]
+    [Migration("20221224210209_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,27 +32,26 @@ namespace WADProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BloodColId"), 1L, 1);
 
-                    b.Property<int>("DonorId")
-                        .HasColumnType("int");
+                    b.Property<string>("Donors")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("Hospital")
                         .IsRequired()
-                        .HasColumnType("varchar(20)");
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("bldType")
                         .IsRequired()
-                        .HasColumnType("varchar(5)");
+                        .HasColumnType("nvarchar(5)");
 
                     b.Property<DateTime>("dateOfCollection")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("noOfBags")
                         .IsRequired()
-                        .HasColumnType("varchar(3)");
+                        .HasColumnType("nvarchar(3)");
 
                     b.HasKey("BloodColId");
-
-                    b.HasIndex("DonorId");
 
                     b.ToTable("bloodCollectData");
                 });
@@ -69,7 +68,8 @@ namespace WADProject.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int>("controlNoBloodReqId")
+                    b.Property<int?>("controlNo")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<DateTime>("dateOfIssuance")
@@ -77,15 +77,13 @@ namespace WADProject.Migrations
 
                     b.Property<string>("issuedBY")
                         .IsRequired()
-                        .HasColumnType("varchar(15)");
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("issuedTo")
                         .IsRequired()
-                        .HasColumnType("varchar(15)");
+                        .HasColumnType("nvarchar(15)");
 
                     b.HasKey("BloodIsudId");
-
-                    b.HasIndex("controlNoBloodReqId");
 
                     b.ToTable("bloodIssuedData");
                 });
@@ -104,18 +102,19 @@ namespace WADProject.Migrations
 
                     b.Property<string>("BloodType")
                         .IsRequired()
-                        .HasColumnType("varchar(4)");
+                        .HasColumnType("nvarchar(4)");
 
                     b.Property<string>("Purpose")
                         .IsRequired()
-                        .HasColumnType("varchar(30)");
+                        .HasColumnType("nvarchar(30)");
 
-                    b.Property<int>("RecipientId")
-                        .HasColumnType("int");
+                    b.Property<string>("Recipient")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("Remarks")
                         .IsRequired()
-                        .HasColumnType("varchar(10)");
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<int?>("controlNo")
                         .IsRequired()
@@ -123,15 +122,13 @@ namespace WADProject.Migrations
 
                     b.Property<string>("noOfBags")
                         .IsRequired()
-                        .HasColumnType("varchar(3)");
+                        .HasColumnType("nvarchar(3)");
 
                     b.Property<string>("requestedBy")
                         .IsRequired()
-                        .HasColumnType("varchar(15)");
+                        .HasColumnType("nvarchar(25)");
 
                     b.HasKey("BloodReqId");
-
-                    b.HasIndex("RecipientId");
 
                     b.ToTable("bloodReqData");
                 });
@@ -146,7 +143,7 @@ namespace WADProject.Migrations
 
                     b.Property<string>("Donor")
                         .IsRequired()
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("dAddress")
                         .IsRequired()
@@ -189,8 +186,9 @@ namespace WADProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("logId"), 1L, 1);
 
-                    b.Property<int>("AccNameAccId")
-                        .HasColumnType("int");
+                    b.Property<string>("AccName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("date")
                         .IsRequired()
@@ -198,15 +196,13 @@ namespace WADProject.Migrations
 
                     b.Property<string>("loginTime")
                         .IsRequired()
-                        .HasColumnType("varchar(9)");
+                        .HasColumnType("nvarchar(12)");
 
                     b.Property<string>("logoutTime")
                         .IsRequired()
-                        .HasColumnType("varchar(9)");
+                        .HasColumnType("nvarchar(12)");
 
                     b.HasKey("logId");
-
-                    b.HasIndex("AccNameAccId");
 
                     b.ToTable("logsData");
                 });
@@ -221,11 +217,11 @@ namespace WADProject.Migrations
 
                     b.Property<string>("Recipient")
                         .IsRequired()
-                        .HasColumnType("varchar(15)");
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("rAddress")
                         .IsRequired()
-                        .HasColumnType("varchar(20)");
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<int?>("rAge")
                         .IsRequired()
@@ -233,7 +229,7 @@ namespace WADProject.Migrations
 
                     b.Property<string>("rBloodType")
                         .IsRequired()
-                        .HasColumnType("varchar(4)");
+                        .HasColumnType("nvarchar(4)");
 
                     b.Property<int?>("rContact")
                         .IsRequired()
@@ -241,15 +237,15 @@ namespace WADProject.Migrations
 
                     b.Property<string>("rEmail")
                         .IsRequired()
-                        .HasColumnType("varchar(20)");
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("rGender")
                         .IsRequired()
-                        .HasColumnType("varchar(6)");
+                        .HasColumnType("nvarchar(6)");
 
                     b.Property<string>("rRemarks")
                         .IsRequired()
-                        .HasColumnType("varchar(10)");
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("RecipientId");
 
@@ -266,63 +262,19 @@ namespace WADProject.Migrations
 
                     b.Property<string>("AccName")
                         .IsRequired()
-                        .HasColumnType("varchar(15)");
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("varchar(15)");
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("userName")
                         .IsRequired()
-                        .HasColumnType("varchar(12)");
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("AccId");
 
                     b.ToTable("Accounts");
-                });
-
-            modelBuilder.Entity("WADProject.Models.BloodCollectionModel", b =>
-                {
-                    b.HasOne("WADProject.Models.DonorModel", "donor")
-                        .WithMany()
-                        .HasForeignKey("DonorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("donor");
-                });
-
-            modelBuilder.Entity("WADProject.Models.BloodIssuedModel", b =>
-                {
-                    b.HasOne("WADProject.Models.BloodRequestModel", "controlNo")
-                        .WithMany()
-                        .HasForeignKey("controlNoBloodReqId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("controlNo");
-                });
-
-            modelBuilder.Entity("WADProject.Models.BloodRequestModel", b =>
-                {
-                    b.HasOne("WADProject.Models.RecipientModel", "Recipient")
-                        .WithMany()
-                        .HasForeignKey("RecipientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Recipient");
-                });
-
-            modelBuilder.Entity("WADProject.Models.logsModel", b =>
-                {
-                    b.HasOne("WADProject.Models.userAccountsModel", "AccName")
-                        .WithMany()
-                        .HasForeignKey("AccNameAccId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AccName");
                 });
 #pragma warning restore 612, 618
         }

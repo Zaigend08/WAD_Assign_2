@@ -86,7 +86,10 @@
                                 </td>
                                 <td id="tdbtn">
                                     <button type="button" class="grnbtn">Edit</button>
-                                    <button type="button" class="redbtn">Close</button>
+                                    @using (Html.BeginForm("DeleteBloodIssued", "Home", new { id = item.BloodIsudId }))
+                                    {
+                                        <button type="submit" class="redbtn">Delete</button>
+                                    }
                                 </td>
                             </tr>
                          }
@@ -108,7 +111,12 @@
                 <label for="controlNo" style="margin-right:15px">Blood Request Control No.</label><br>
             </div>
             <div class = "row">
-                <input style="width:100%" type="number" name="controlNo" placeholder=" No." required > <br>
+                <select style="width:100%" type="number" name="controlNo" placeholder=" No." required >
+                    @foreach (var value in ViewBag.ControlNo)
+                    {
+                        <option value="@value">@value</option>
+                    }
+                </select>
             </div> <br /> 
             <div class ="row">
                 <label for="issuedBy">Issued By  </label> <br />

@@ -10,7 +10,7 @@ namespace WADProject.Models
         public int DonorId { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(20)")]
+        [Column(TypeName = "nvarchar(25)")]
         public string? Donor { get; set; }
 
         [Required]

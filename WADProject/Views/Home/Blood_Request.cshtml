@@ -99,7 +99,10 @@
                                 </td>
                                 <td id="tdbtn">
                                     <button type="button" class="grnbtn">Edit</button>
-                                    <button type="button" class="redbtn">Close</button>
+                                    @using (Html.BeginForm("DeleteBloodReq", "Home", new { id = item.BloodReqId }))
+                                    {
+                                        <button type="submit" class="redbtn">Delete</button>
+                                    }
                                 </td>
                             </tr>
                          }
@@ -120,38 +123,40 @@
             <div class ="row">
                 <label for="controlNo">Control No</label> <br />
                 <label for="requestedBy" style="margin-left:-18px">Requested By</label> <br>
-                <label for="rBloodtype">Blood Type</label> <br />
+                <label for="BloodType">Blood Type</label> <br />
             </div>
             <div class ="row">
-                <input type="number" name="controlNo" placeholder="  -  -  -  -"  style="width:75px">
-                <input type="text" name="requestedBy" placeholder=" Name Here!"  style="margin-left:5%;width:100px"> <br>
-                <select name="rBloodtype" style="margin-right:7%;width:80px">
-                    <option value="O" selected>O </option>
+                <input type="number" name="controlNo" placeholder="  -  -  -  -"  style="width:75px" required>
+                <input type="text" name="requestedBy" placeholder=" Name Here!"  style="margin-left:5%;width:100px" required> <br>
+                <select name="BloodType" style="margin-right:7%;width:80px" required>
+                    <option value="O">O </option>
                     <option value="A">A</option>
                     <option value="B">B</option>
-                    <option value="AB">AB</option>
+                    <option value="AB" selected>AB</option>
                 </select>
             </div> <br />
             <div class ="row">
                 <label for="Recipient">Recipient</label> <br />
                 <label for="noOfBags" style="margin-left:55px">No Of Bags</label><br>
             </div>
-            <div class ="row">
-                 <select name="Recipient" style="width:45%">
-                    <option value="d1" selected>Data 1 </option>
-                    <option value="d2">Data 2</option>
-                </select> 
+            <div class ="row"> 
+                <select name="Recipient" style="width:45%" required>
+                    @foreach (var value in ViewBag.Recipient)
+                    {
+                        <option value="@value">@value</option>
+                    }
+                </select>
                  <input style="width:80px" type="number" name="noOfBags" placeholder="No." required> <br>     
             </div> <br />
             <div class = "row">
                 <label for="Amount" style="margin-right:15px">Amount</label><br>
                 <label for="Purpose">Purpose</label> <br>
-                <label for="rRemarks">Remarks</label><br>
+                <label for="Remarks">Remarks</label><br>
             </div>
             <div class = "row">
                 <input style="width:68px" type="number" name="Amount" placeholder=" Amt" required> <br>              
                 <input style="width:38%" type="text" name="Purpose"  placeholder=" Purpose of Requesting" required> <br> 
-                <input style="width:66px;margin-right:20px" type="text" name="rRemarks" placeholder=" Remarks" required> <br>
+                <input style="width:66px;margin-right:20px" type="text" name="Remarks" placeholder=" Remarks" required> <br>
             </div> <br /> 
             <!---------------------------------------->
             <button style="margin-left:43%" type="submit" class="sbmtbtn" onsubmit="openForm()">Submit</button>

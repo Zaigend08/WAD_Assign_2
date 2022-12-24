@@ -9,20 +9,20 @@ namespace WADProject.Models
         public int logId { get; set; }
 
         [Required]
-        [Column(TypeName = "varchar(15)")]
-        public userAccountsModel? AccName { get; set; }
+        [Column(TypeName = "nvarchar(25)")]
+        public string? AccName { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
         public string? date { get; set; }
 
         [Required]
-        [Column(TypeName = "varchar(9)")]
+        [Column(TypeName = "nvarchar(12)")]
         [DataType(DataType.Time)]
         public string? loginTime { get; set; }
 
         [Required]
-        [Column(TypeName = "varchar(9)")]
+        [Column(TypeName = "nvarchar(12)")]
         [DataType(DataType.Time)]
         public string? logoutTime { get; set; }
     }

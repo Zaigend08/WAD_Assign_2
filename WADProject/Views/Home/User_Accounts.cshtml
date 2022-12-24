@@ -80,7 +80,10 @@
                                 </td>
                                 <td id="tdbtn">
                                     <button type="button" class="grnbtn">Edit</button>
-                                    <button type="button" class="redbtn">Close</button>
+                                    @using (Html.BeginForm("DeleteAccount", "Home", new { id = item.AccId }))
+                                    {
+                                        <button type="submit" class="redbtn">Delete</button>
+                                    }
                                 </td>
                             </tr>
                          }

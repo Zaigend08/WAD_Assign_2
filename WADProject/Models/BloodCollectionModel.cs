@@ -10,20 +10,20 @@ namespace WADProject.Models
         public int BloodColId { get; set; }
 
         [Required]
-        [Column(TypeName = "varchar(15)")]
-        public DonorModel? donor { get; set; }
+        [Column(TypeName = "nvarchar(25)")]
+        public string? Donors { get; set; }
 
         [Required]
-        [Column(TypeName = "varchar(5)")]
+        [Column(TypeName = "nvarchar(5)")]
         public string? bldType { get; set; }
 
         [Required]
-        [Column(TypeName = "varchar(20)")]
+        [Column(TypeName = "nvarchar(30)")]
         [MinLength(10)]
         public string? Hospital { get; set; }
 
         [Required]
-        [Column(TypeName = "varchar(3)")]
+        [Column(TypeName = "nvarchar(3)")]
         [MinLength(1)]
         public string? noOfBags { get; set; }
 

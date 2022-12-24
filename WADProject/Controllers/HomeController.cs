@@ -10,49 +10,140 @@ namespace WADProject.Controllers
         {
             _Db = Db;
         }
+        public List<string?> GetDonors()
+        {
+            return _Db.DonorData.Select(c => c.Donor).ToList();
+        }
+        public List<string?> GetRecipient()
+        {
+            return _Db.RecipientData.Select(c => c.Recipient).ToList();
+        }
+        public List<int?> GetCno()
+        {
+            return _Db.bloodReqData.Select(c => c.controlNo).ToList();
+        }
         [HttpGet]
         public IActionResult Donor()
         {
-            try
-            {
                 List<DonorModel>? listofdata = _Db.DonorData.ToList();
                 return View(listofdata);
-            }
-            catch { };
-                return View();
-
         }
         [HttpPost]
         public IActionResult Donor(DonorModel model)
         {
-            Console.WriteLine(model);
             _Db.DonorData.Add(model);
             _Db.SaveChanges();
             return RedirectToAction("Donor",new {HTTPVerb = "GET"});
         }
-        /*public IActionResult Recipient()
+        public ActionResult DeleteDonor(int id)
         {
-            return View();
+            var data = _Db.DonorData.Where(x => x.DonorId == id).FirstOrDefault();
+            _Db.DonorData.Remove(data);
+            _Db.SaveChanges();
+            return RedirectToAction("Donor");
+        }
+        public IActionResult Recipient()
+        {
+                List<RecipientModel>? listofdata = _Db.RecipientData.ToList();
+                return View(listofdata);
+        }
+        [HttpPost]
+        public IActionResult Recipient(RecipientModel model)
+        {
+            _Db.RecipientData.Add(model);
+            _Db.SaveChanges();
+            return RedirectToAction("Recipient", new { HTTPVerb = "GET" });
+        }
+        public ActionResult DeleteRecipient(int id)
+        {
+            var data = _Db.RecipientData.Where(x => x.RecipientId == id).FirstOrDefault();
+            _Db.RecipientData.Remove(data);
+            _Db.SaveChanges();
+            return RedirectToAction("Recipient");
         }
         public IActionResult Blood_Collection()
         {
-            return View();
+            List<BloodCollectionModel>? listofdata = _Db.bloodCollectData.ToList();
+            ViewBag.Donors = GetDonors();
+            return View(listofdata);
+        }
+        [HttpPost]
+        public IActionResult Blood_Collection(BloodCollectionModel model)
+        {
+            _Db.bloodCollectData.Add(model);
+            _Db.SaveChanges();
+            return RedirectToAction("Blood_Collection", new {HTTPVerb = "GET"});
+        }
+        public ActionResult DeleteBloodCol(int id)
+        {
+            var data = _Db.bloodCollectData.Where(x => x.BloodColId == id).FirstOrDefault();
+            _Db.bloodCollectData.Remove(data);
+            _Db.SaveChanges();
+            return RedirectToAction("Blood_Collection");
         }
         public IActionResult Blood_Request()
         {
-            return View();
+            List<BloodRequestModel>? listofdata = _Db.bloodReqData.ToList();
+            ViewBag.Recipient = GetRecipient();
+            return View(listofdata);
+        }
+        [HttpPost]
+        public IActionResult Blood_Request(BloodRequestModel model)
+        {
+            _Db.bloodReqData.Add(model);
+            _Db.SaveChanges();
+            return RedirectToAction("Blood_Request", new {HTTPVerb = "GET"});
+        }
+        public ActionResult DeleteBloodReq(int id)
+        {
+            var data = _Db.bloodReqData.Where(x => x.BloodReqId == id).FirstOrDefault();
+            _Db.bloodReqData.Remove(data);
+            _Db.SaveChanges();
+            return RedirectToAction("Blood_Request");
         }
         public IActionResult Blood_Issued()
         {
-            return View();
+            List<BloodIssuedModel>? listofdata = _Db.bloodIssuedData.ToList();
+            ViewBag.ControlNo = GetCno();
+            return View(listofdata);
+        }
+        [HttpPost]
+        public IActionResult Blood_Issued(BloodIssuedModel model)
+        {
+            _Db.bloodIssuedData.Add(model);
+            _Db.SaveChanges();
+            return RedirectToAction("Blood_Issued", new {HTTPVerb = "GET"});
+        }
+        public ActionResult DeleteBloodIssued(int id)
+        {
+            var data = _Db.bloodIssuedData.Where(x => x.BloodIsudId == id).FirstOrDefault();
+            _Db.bloodIssuedData.Remove(data);
+            _Db.SaveChanges();
+            return RedirectToAction("Blood_Issued");
         }
         public IActionResult User_Accounts()
         {
-            return View();
+            List<userAccountsModel>? listofdata = _Db.Accounts.ToList();
+            return View(listofdata);
+        }
+        [HttpPost]
+        public IActionResult User_Accounts(userAccountsModel model)
+        {
+            _Db.Accounts.Add(model);
+            _Db.SaveChanges();
+            return RedirectToAction("User_Accounts", new {HTTPVerb = "GET"});
+        }
+        public ActionResult DeleteAccount(int id)
+        {
+            var data = _Db.Accounts.Where(x => x.AccId == id).FirstOrDefault();
+            _Db.Accounts.Remove(data);
+            _Db.SaveChanges();
+            return RedirectToAction("User_Accounts");
         }
         public IActionResult User_Logs()
         {
-            return View();
-        }*/
+            List<logsModel>? listofdata = _Db.logsData.ToList();
+            return View(listofdata);
+        }
     }
 }

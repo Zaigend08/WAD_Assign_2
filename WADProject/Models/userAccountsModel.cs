@@ -9,15 +9,15 @@ namespace WADProject.Models
         public int AccId { get; set; }
 
         [Required]
-        [Column(TypeName = "varchar(15)")]
+        [Column(TypeName = "nvarchar(25)")]
         public string? AccName { get; set; }
 
         [Required]
-        [Column(TypeName = "varchar(12)")]
+        [Column(TypeName = "nvarchar(20)")]
         public string? userName { get; set; }
 
         [Required]
-        [Column(TypeName = "varchar(15)")]
+        [Column(TypeName = "nvarchar(25)")]
         [DataType(DataType.Password)]
         public string? Password { get; set; }
     }
