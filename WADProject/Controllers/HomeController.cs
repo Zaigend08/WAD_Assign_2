@@ -14,7 +14,7 @@ namespace WADProject.Controllers
         {
             return _Db.DonorData.Select(c => c.Donor).ToList();
         }
-        public List<string?> GetRecipient()
+        public List<string?> GetRecipients()
         {
             return _Db.RecipientData.Select(c => c.Recipient).ToList();
         }
@@ -23,10 +23,9 @@ namespace WADProject.Controllers
             return _Db.bloodReqData.Select(c => c.controlNo).ToList();
         }
         [HttpGet]
-        public IActionResult Donor()
+        public IActionResult Donor(string search)
         {
-                List<DonorModel>? listofdata = _Db.DonorData.ToList();
-                return View(listofdata);
+            return View(_Db.DonorData.Where(x => x.Donor.Contains(search) || search == null).ToList());
         }
         [HttpPost]
         public IActionResult Donor(DonorModel model)
@@ -42,10 +41,9 @@ namespace WADProject.Controllers
             _Db.SaveChanges();
             return RedirectToAction("Donor");
         }
-        public IActionResult Recipient()
+        public IActionResult Recipient(string search)
         {
-                List<RecipientModel>? listofdata = _Db.RecipientData.ToList();
-                return View(listofdata);
+            return View(_Db.RecipientData.Where(x => x.Recipient.Contains(search) || search == null).ToList());
         }
         [HttpPost]
         public IActionResult Recipient(RecipientModel model)
@@ -61,11 +59,10 @@ namespace WADProject.Controllers
             _Db.SaveChanges();
             return RedirectToAction("Recipient");
         }
-        public IActionResult Blood_Collection()
+        public IActionResult Blood_Collection(string search)
         {
-            List<BloodCollectionModel>? listofdata = _Db.bloodCollectData.ToList();
             ViewBag.Donors = GetDonors();
-            return View(listofdata);
+            return View(_Db.bloodCollectData.Where(x => x.Donors.Contains(search) || search == null).ToList());
         }
         [HttpPost]
         public IActionResult Blood_Collection(BloodCollectionModel model)
@@ -81,11 +78,10 @@ namespace WADProject.Controllers
             _Db.SaveChanges();
             return RedirectToAction("Blood_Collection");
         }
-        public IActionResult Blood_Request()
+        public IActionResult Blood_Request(string search)
         {
-            List<BloodRequestModel>? listofdata = _Db.bloodReqData.ToList();
-            ViewBag.Recipient = GetRecipient();
-            return View(listofdata);
+            ViewBag.Recipients = GetRecipients();
+            return View(_Db.bloodReqData.Where(x => x.controlNo.ToString().Contains(search) || search == null).ToList());
         }
         [HttpPost]
         public IActionResult Blood_Request(BloodRequestModel model)
@@ -101,11 +97,10 @@ namespace WADProject.Controllers
             _Db.SaveChanges();
             return RedirectToAction("Blood_Request");
         }
-        public IActionResult Blood_Issued()
+        public IActionResult Blood_Issued(string search)
         {
-            List<BloodIssuedModel>? listofdata = _Db.bloodIssuedData.ToList();
             ViewBag.ControlNo = GetCno();
-            return View(listofdata);
+            return View(_Db.bloodIssuedData.Where(x => x.controlNo.ToString().Contains(search) || search == null).ToList());
         }
         [HttpPost]
         public IActionResult Blood_Issued(BloodIssuedModel model)
@@ -121,10 +116,9 @@ namespace WADProject.Controllers
             _Db.SaveChanges();
             return RedirectToAction("Blood_Issued");
         }
-        public IActionResult User_Accounts()
+        public IActionResult User_Accounts(string search)
         {
-            List<userAccountsModel>? listofdata = _Db.Accounts.ToList();
-            return View(listofdata);
+            return View(_Db.Accounts.Where(x => x.userName.Contains(search) || search == null).ToList());
         }
         [HttpPost]
         public IActionResult User_Accounts(userAccountsModel model)
@@ -140,10 +134,22 @@ namespace WADProject.Controllers
             _Db.SaveChanges();
             return RedirectToAction("User_Accounts");
         }
-        public IActionResult User_Logs()
+        public IActionResult User_Logs(string search)
         {
-            List<logsModel>? listofdata = _Db.logsData.ToList();
-            return View(listofdata);
+            return View(_Db.logsData.Where(x => x.AccName.Contains(search) || search == null).ToList());
         }
     }
 }
+
+        
+        /*[HttpPost]
+        public ActionResult Search(string searchString)
+        {
+            var dnr = from m in _Db.DonorData select m;
+            Console.WriteLine(dnr);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                dnr = dnr.Where(d => d.Donor.Contains(searchString));
+            }
+            return RedirectToAction("Donor", new { srch = dnr });
+        }*/

@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace WADProject.Models
 {
-    public class AppDbContext:DbContext
+    public class AppDbContext: DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
         {

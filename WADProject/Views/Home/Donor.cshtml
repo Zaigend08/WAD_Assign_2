@@ -1,29 +1,9 @@
-﻿@model IEnumerable<WADProject.Models.DonorModel>
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-<!DOCTYPE html>
-<html lang="en">
+@model IEnumerable<WADProject.Models.DonorModel>
 
-<head>
-    <title>Blood Bank Managment System</title>
-    <link rel="stylesheet" href="~/css/style.css">
-    <!-- favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="~/assets/images/BB_favicon.png">
-    <!--         -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-</head>
-
-<body>
-    <header>
-        <!--inline -->
-        <img src="~/assets/images/logo.png" alt="Logo" style="height: 70%; width: 2.8%;padding : 9px 0px 0px 5px; margin-bottom: -1px">
-        <h2>
-            Blood Bank Managment
-        </h2>
-        <img src="~/assets/images/person-circle-sharp.svg"
-            style="padding : 8px 0.5px 0px 61%;margin-bottom: -5px;">
-        <p id="sample-user">Sample User</p>
-
-    </header>
       <div class="full-page" id="blur">
         <div class="center">
             <div class="navbar">
@@ -54,7 +34,11 @@
                 <br> <div style="height:12px "></div>
                 <div id="utility">
                     <button class="grnbtn" onclick="openForm()"><b>+</b> Add</button>
-                    <input type="text" placeholder=" Search" style="float:right; height: 30px;">
+                    @using (Html.BeginForm(FormMethod.Get, new{ style="float:right;padding-top:6px" }))
+                    {
+                        @Html.TextBox("search", null, new{ @placeholder = " Search by Donor", @style="height:28px"})
+                        <input type="submit" value="Search" class="sbmtbtn"/>
+                    }
                 </div>
                 <table>
                     <thead>
@@ -71,54 +55,52 @@
                         </tr>
                     </thead>
                     <tbody>
-                     @*@if(Model is not null)
-                     {*@
-                         @foreach (var item in Model) 
-                        {   
+                        @if(Model.Count() == 0)
+                        {
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Donor)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.dAddress)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.dContact)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.dEmail)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.dAge)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.dGender)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.dBloodType)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.dRemarks)
-                                </td>
-                                <td id="tdbtn">
-                                    @using (Html.BeginForm("Delete", "Home", new { id = item.DonorId }))
-                                    {
-                                        <button type="submit" class="grnbtn">Edit</button>
-                                    }
-                                    @using (Html.BeginForm("DeleteDonor", "Home", new { id = item.DonorId }))
-                                    {
-                                        <button type="submit" class="redbtn">Delete</button>
-                                    }
-                                </td>
+                                <td colspan="9">Data is Empty or not Available</td>
                             </tr>
-                         }
-                     @*    
-                     }
-                     else{
-                         <tr> 
-                             <td> Their is no data in this table</td>
-                         </tr>
-                     }*@
+                        }
+                        else
+                        {
+                            foreach (var item in Model) 
+                            {   
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Donor)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.dAddress)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.dContact)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.dEmail)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.dAge)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.dGender)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.dBloodType)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.dRemarks)
+                                    </td>
+                                    <td id="tdbtn">
+                                        <div class="grnbtn">
+                                            @Html.ActionLink("Edit", "EditDonor", new { id = item.DonorId})
+                                        </div>
+                                        <div class="redbtn">
+                                            @Html.ActionLink("Delete", "DeleteDonor", new { id = item.DonorId})
+                                        </div>
+                                    </td>
+                                </tr>
+                             }
+                        }
                     </tbody>
                     
                 </table>
@@ -172,12 +154,3 @@
                 <input type="submit" value="Submit" style="margin-left:43%" class="sbmtbtn" />
             }
     </div>
-
-@section Scripts {
-@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
-  
-    <script src="~/js/scripts.js"></script>
-</body>
-
-</html>

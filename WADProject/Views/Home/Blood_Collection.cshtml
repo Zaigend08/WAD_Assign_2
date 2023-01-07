@@ -1,32 +1,12 @@
 ﻿@model IEnumerable<WADProject.Models.BloodCollectionModel>
 
-<!DOCTYPE html>
-<html lang="en">
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-<head>
-    <title>Blood Bank Managment System</title>
-    <link rel="stylesheet" href="~/css/style.css">
-    <!-- favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="~/assets/images/BB_favicon.png">
-    <!--         -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-</head>
-
-<body>
-    <header>
-        <!--inline -->
-        <img src="~/assets/images/logo.png" alt="Logo" style="height: 60%; width: 2.8%;padding : 9px 0px 0px 5px; margin-bottom: -2px">
-        <h2>
-            Blood Bank Managment
-        </h2>
-        <img src="~/assets/images/person-circle-sharp.svg"
-            style="padding : 8px 0.5px 0px 61%;margin-bottom: -5px;">
-        <p id="sample-user">Sample User</p>
-
-    </header>
       <div class="full-page" id="blur">
         <div class="center">
-<div class="navbar">
+            <div class="navbar">
                 <nav>
                     <a class="navitem" href="~/Home/Donor">Donor</a>
 
@@ -54,7 +34,11 @@
                 <br> <div style="height:12px "></div>
                 <div id="utility">
                     <button class="grnbtn" onclick="openForm()"><b>+</b> Add</button>
-                    <input type="text" placeholder=" Search" style="float:right; height: 30px;">
+                    @using (Html.BeginForm(FormMethod.Get, new{ style="float:right;padding-top:6px" }))
+                    {
+                        @Html.TextBox("search", null, new{ @placeholder = " Search by Donor", @style="height:28px"})
+                        <input type="submit" value="Search" class="sbmtbtn"/>
+                    }
                 </div>
                 <table>
                     <tr>
@@ -65,41 +49,43 @@
                         <th>Date Collection</th>
                         <th>Action</th>
                     </tr>
-                    @*@if(Model != null)
-                     {*@
-                         @foreach (var item in Model) 
-                        {   
+                        @if(Model.Count() == 0)
+                        {
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Donors)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Hospital)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.bldType)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.noOfBags)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.dateOfCollection)
-                                </td>
-                                <td id="tdbtn">
-                                    <button type="button" class="grnbtn">Edit</button>
-                                    @using (Html.BeginForm("DeleteBloodCol", "Home", new { id = item.BloodColId }))
-                                    {
-                                        <button type="submit" class="redbtn">Delete</button>
-                                    }
-                                </td>
+                                <td colspan="6">Data is Empty or not Available</td>
                             </tr>
-                         }
-                     @*}
-                     else{
-                         <tr> 
-                             <td> Their is no data in this table</td>
-                         </tr>
-                     }*@
+                        }
+                        else
+                        { 
+                            foreach (var item in Model) 
+                            {   
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Donors)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Hospital)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.bldType)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.noOfBags)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.dateOfCollection)
+                                    </td>
+                                    <td id="tdbtn">
+                                        <div class="grnbtn">
+                                            @Html.ActionLink("Edit", "EditBloodCol", new { id = item.BloodColId})
+                                        </div>
+                                        <div class="redbtn">
+                                            @Html.ActionLink("Delete", "DeleteBloodCol", new { id = item.BloodColId})
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
                 </table>
             </div>
    </div>
@@ -144,9 +130,3 @@
             <button style="margin-left:43%" class="sbmtbtn" type="submit" onsubmit="openForm()">Submit</button>
         </form>
     </div>
-
-    
-    <script src="~/js/scripts.js"></script>
-</body>
-
-</html>
